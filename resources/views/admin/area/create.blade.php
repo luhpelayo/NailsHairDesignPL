@@ -5,15 +5,15 @@
      <div class="page-header  text-center">
       <h1>
         <i class="fa fa-map-marker"style="color:green"></i>
-       REGISTRA TU SALON<small></small>
+       REGISTRA SALON<small></small>
       </h1>
     </div>
   <div class="col-xs-12 col-md-8 col-md-offset-2 col-xl-6 col-xl-offset-3">
     @if (count($errors) > 0)
         @include('admin.partials.errors')
     @endif
-    
-      {!! Form::open(['route'=>'area.store']) !!}
+
+    {!! Form::open(['route'=>'area.store','method' => 'POST','files' => true]) !!}
           
           <div class="form-group">
               <label for="description">Nombre del Salon:</label>
@@ -23,7 +23,7 @@
                       null, 
                       array(
                           'class'=>'form-control',
-                          'placeholder' => 'Ingrese descripción...',
+                          'placeholder' => 'Ingrese nombre del salon...',
                                         'autofocus' => 'autofocus'
                       )
                   ) 
@@ -31,7 +31,7 @@
           </div>
         
           <div class="form-group">
-              <label for="direccion">Direccion:</label>
+              <label for="direccion">Dirección:</label>
               {!! 
                   Form::text(
                       'direccion', 
@@ -39,13 +39,12 @@
                       array(
                          
                           'class'=>'form-control',
-                          'placeholder' => 'Direccion del solicitante...',
+                          'placeholder' => 'Dirección...',
                                         'autofocus' => 'autofocus'
                       )
                   ) 
               !!}
           </div>
-
 
 
           <div class="form-group"  id="lat">
@@ -58,7 +57,8 @@
                       array(
                          
                           'class'=>'form-control',
-                          'placeholder' => 'Lat del salon...',
+                          'value' => 'lat',
+                          'id' => 'latitud',
                                         'autofocus' => 'autofocus'
                       )
                   ) 
@@ -66,7 +66,7 @@
           </div>
           <div>
   
-          <div  class="form-group" id="lon">
+          <div  class="form-group" id="lon" >
               <label  for="lon">Longitud:</label>
              
               {!! 
@@ -76,7 +76,9 @@
                       array(
                          
                           'class'=>'form-control',
-                          'placeholder' => 'Lon del salon...',
+                          'value' => 'lon',
+                          'id' => 'longitud',
+                         
                                         'autofocus' => 'autofocus'
                       )
                   ) 
@@ -88,16 +90,7 @@
           {!! Form::label('img','Agregar una imagen') !!}
           {!! Form::file('img')!!}
          </div>
- <div class="row">
-    <div class="form-group col-md-4"> lat
-        <input type="text" id="latitud" class="form-control" value="lat"  >    
-        </div>
-        
-        <div class="form-group col-md-4">lon
-        <input type="text" id="longitud" class="form-control"  value="lon"  >     
-        </div>
-    </div>
-</div>
+
      
           <div class="row">
    <div class="col-md-12">
@@ -164,5 +157,11 @@ marcador= new google.maps.Marker({
 
 
 
+@endsection
 
-@stop
+@section('js')
+  <script>
+    $('.textarea-content').trumbowyg();
+
+  </script>
+@endsection

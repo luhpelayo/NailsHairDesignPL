@@ -28,7 +28,7 @@ class GalleryController extends Controller
     // }
     public function index(Request $request)
     {
-        $galleries = Gallery::content($request->get('content'))->orderby('id','DESC')->paginate(2);
+        $galleries = Gallery::content($request->get('content'))->orderby('id','DESC')->paginate(4);
 
         return view('admin.gallery.index', compact('galleries'));
     }
